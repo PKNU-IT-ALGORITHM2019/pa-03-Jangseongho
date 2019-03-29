@@ -24,9 +24,9 @@ void Reverse100000();
 void reset_re(int n); 
 void reset_ran(int n);
 void print();
-double DATA[7][6] = { 0 };//Bubble,Selection,Insertion,Merge,Quick1,2,3
+double DATA[7][6] = { 0 };//¹öºí,¼±ÅÃ,»ğÀÔ,ÇÕº´,Äü1,2,3
 char data_index[7][100] = { "\t","Random1000","Reverse1000","Random10000","Reverse10000","Random100000","Reverse100000" };
-char Category[7][100] = { "Bubble","Selection","Insertion","Merge","Quick1","Quick2","Quick3" };
+char Category[7][100] = { "¹öºí","¼±ÅÃ","»ğÀÔ","ÇÕº´","Äü1","Äü2","Äü3" };
 clock_t end, start;
 #define LENGTH 100000
 int data[100000];
@@ -40,7 +40,6 @@ int main() {
 	Reverse100000();
 	Random100000();
 	print();
-
 	return 0;
 }
 double selectionSort(int A[], int n) {  
@@ -162,7 +161,6 @@ void quickSort_Mid(int A[], int left, int right) { // ÇÇº¿ = Áß°£°ª
 			j--;
 		}
 	}
-
 	if (left < j)
 		quickSort_Mid(A, left, j);
 
@@ -191,6 +189,45 @@ void print() {
 			printf("%10lf    ", DATA[i][j]);
 		}printf("\n");
 	}
+}
+void Reverse1000() {
+	reset_re(1000); DATA[0][1] = bubbleSort(data, 1000);
+	reset_re(1000); DATA[1][1] = selectionSort(data, 1000);
+	reset_re(1000); DATA[2][1] = InsertionSort(data, 1000);
+	reset_re(1000); start = clock(); mergeSort(data, 0, 999); end = clock();
+	DATA[3][1] = (double)(end - start) / CLK_TCK;
+	reset_re(1000); start = clock(); quickSort(data, 0, 999); end = clock();
+	DATA[4][1] = (double)(end - start) / CLK_TCK;
+	reset_re(1000); start = clock(); quickSort_Mid(data, 0, 999); end = clock();
+	DATA[5][1] = (double)(end - start) / CLK_TCK;
+	reset_re(1000); start = clock(); quickSort_Random(data, 0, 999); end = clock();
+	DATA[6][1] = (double)(end - start) / CLK_TCK;
+}
+void Reverse10000() {
+	reset_re(10000); DATA[0][3] = bubbleSort(data, 10000);
+	reset_re(10000); DATA[1][3] = selectionSort(data, 10000);
+	reset_re(10000); DATA[2][3] = InsertionSort(data, 10000);
+	reset_re(10000); start = clock(); mergeSort(data, 0, 9999); end = clock();
+	DATA[3][3] = (double)(end - start) / CLK_TCK;
+	reset_re(10000); start = clock(); quickSort(data, 0, 9999); end = clock();
+	DATA[4][3] = (double)(end - start) / CLK_TCK;
+	reset_re(10000); start = clock(); quickSort_Mid(data, 0, 9999); end = clock();
+	DATA[5][3] = (double)(end - start) / CLK_TCK;
+	reset_re(10000); start = clock(); quickSort_Random(data, 0, 9999); end = clock();
+	DATA[6][3] = (double)(end - start) / CLK_TCK;
+}
+void Reverse100000() {
+	reset_re(100000); DATA[0][5] = bubbleSort(data, 100000);
+	reset_re(100000); DATA[1][5] = selectionSort(data, 100000);
+	reset_re(100000); DATA[2][5] = InsertionSort(data, 100000);
+	reset_re(100000); start = clock(); mergeSort(data, 0, 9999); end = clock();
+	DATA[3][5] = (double)(end - start) / CLK_TCK;
+	reset_re(100000); start = clock(); quickSort(data, 0, 9999); end = clock();
+	DATA[4][5] = (double)(end - start) / CLK_TCK;
+	reset_re(100000); start = clock(); quickSort_Mid(data, 0, 9999); end = clock();
+	DATA[5][5] = (double)(end - start) / CLK_TCK;
+	reset_re(100000); start = clock(); quickSort_Random(data, 0, 9999); end = clock();
+	DATA[6][5] = (double)(end - start) / CLK_TCK;
 }
 void Random1000() {
 	double sum[7] = { 0.0 };
@@ -249,46 +286,7 @@ void Random100000() {
 		DATA[i][4] = sum[i] / 10.0;
 	}
 }
-void Reverse1000() {
-	reset_re(1000); DATA[0][1] = bubbleSort(data, 1000);
-	reset_re(1000); DATA[1][1] = selectionSort(data, 1000);
-	reset_re(1000); DATA[2][1] = InsertionSort(data, 1000);
-	reset_re(1000); start = clock(); mergeSort(data, 0, 999); end = clock();
-	DATA[3][1] = (double)(end - start) / CLK_TCK;
-	reset_re(1000); start = clock(); quickSort(data, 0, 999); end = clock();
-	DATA[4][1] = (double)(end - start) / CLK_TCK;
-	reset_re(1000); start = clock(); quickSort_Mid(data, 0, 999); end = clock();
-	DATA[5][1] = (double)(end - start) / CLK_TCK;
-	reset_re(1000); start = clock(); quickSort_Random(data, 0, 999); end = clock();
-	DATA[6][1] = (double)(end - start) / CLK_TCK;
-}
-void Reverse10000() {
-	reset_re(10000); DATA[0][3] = bubbleSort(data, 10000);
-	reset_re(10000); DATA[1][3] = selectionSort(data, 10000);
-	reset_re(10000); DATA[2][3] = InsertionSort(data, 10000);
-	reset_re(10000); start = clock(); mergeSort(data, 0, 9999); end = clock();
-	DATA[3][3] = (double)(end - start) / CLK_TCK;
-	reset_re(10000); start = clock(); quickSort(data, 0, 9999); end = clock();
-	DATA[4][3] = (double)(end - start) / CLK_TCK;
-	reset_re(10000); start = clock(); quickSort_Mid(data, 0, 9999); end = clock();
-	DATA[5][3] = (double)(end - start) / CLK_TCK;
-	reset_re(10000); start = clock(); quickSort_Random(data, 0, 9999); end = clock();
-	DATA[6][3] = (double)(end - start) / CLK_TCK;
-}
-void Reverse100000() {
-	reset_re(100000); DATA[0][5] = bubbleSort(data, 100000);
-	reset_re(100000); DATA[1][5] = selectionSort(data, 100000);
-	reset_re(100000); DATA[2][5] = InsertionSort(data, 100000);
-	reset_re(100000); start = clock(); mergeSort(data, 0, 9999); end = clock();
-	DATA[3][5] = (double)(end - start) / CLK_TCK;
-	reset_re(100000); start = clock(); quickSort(data, 0, 9999); end = clock();
-	DATA[4][5] = (double)(end - start) / CLK_TCK;
-	reset_re(100000); start = clock(); quickSort_Mid(data, 0, 9999); end = clock();
-	DATA[5][5] = (double)(end - start) / CLK_TCK;
-	reset_re(100000); start = clock(); quickSort_Random(data, 0, 9999); end = clock();
-	DATA[6][5] = (double)(end - start) / CLK_TCK;
 
-}
 void reset_re(int n) {  
 	for (int i = 0; i < n; i++) {
 		data[i] = n - i;
